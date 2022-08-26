@@ -1,0 +1,30 @@
+What will GetScraped do for use cases and requirements?
+
+It's a single window with a URL field and a button.
+You put the URL into the field button.
+You click Scrape.
+The program will automatically try to:
+	-go to the website
+	-pull the HTML
+	-parse the HTML
+	-arrange it in a nice text format
+	-save this as .txt in the program's default folder
+	
+During this, it will say "Scraping..."
+-If successful, it will report that the file was scraped.
+-If not successful, or throws an exception, it will cast a generic error message popup.
+
+Scraper
+	-access web page
+	-scrape data
+	-package data into HTML object
+HTML
+	-hold HTML data object
+DataParser
+	-get HTML data
+	-parse data
+	-organize and output result
+Output
+	-saves text output
+ErrorHandler
+	-handles errors and exceptions if they come up
