@@ -13,7 +13,7 @@ public class HelloController {
     @FXML
     private Label welcomeText;
     @FXML
-    private Label resultText;
+    private Label statusText;
     @FXML
     private TextField url;
 
@@ -24,7 +24,7 @@ public class HelloController {
 
     @FXML
     protected void onScrapeButtonClick() {
-        resultText.setText("Web page successfully scraped.");
+        statusText.setText("Web page successfully scraped.");
     }
 
     //@Override

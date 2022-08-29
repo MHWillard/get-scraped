@@ -17,5 +17,5 @@
     <Button text="Hello!" onAction="#onHelloButtonClick"/>
     <TextField fx:id="url"/>
     <Button text="Scrape" onAction="#onScrapeButtonClick" />
-    <Label fx:id="resultText"/>
+    <Label fx:id="statusText"/>
 </VBox>
