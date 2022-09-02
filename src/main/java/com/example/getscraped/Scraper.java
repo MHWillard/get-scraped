@@ -1,6 +1,5 @@
 package com.example.getscraped;
 
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,5 +14,38 @@ public class Scraper {
     public Scraper() {
     }
 
-    public Document
+    public Document getDocument() {
+        return doc;
+    }
+
+    public Elements getNewsHeadlines() {
+        return newsHeadlines;
+    }
+
+    public void connectDocument() throws IOException {
+        doc = Jsoup.connect("https://en.wikipedia.org").get();
+        log(doc.title());
+    }
+
+    public void grabHeadlines(Document doc) {
+        newsHeadlines = doc.select("#mp-itn b a");
+    }
+
+    public void printHeadlines(Elements newsHeadlines) {
+        //log headline and link to that article
+        for (Element headline : newsHeadlines) {
+            log("%s\n\t%s", headline.attr("title"), headline.absUrl("href"));
+        }
+    }
+
+    private static void log(String msg, String... vals) {
+        System.out.println(String.format(msg, vals));
+    }
+
+    public void outputElements() {}
+
+    //access web page from URL
+    //scrape the data
+    //package data as needed into HTML object for DataParser to work with
+    //organize and then dump as .txt. file
 }

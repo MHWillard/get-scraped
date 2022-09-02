@@ -17,6 +17,8 @@ public class HelloController {
     @FXML
     private TextField url;
 
+    private Scraper scraper;
+
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -25,6 +27,14 @@ public class HelloController {
     @FXML
     protected void onScrapeButtonClick() {
         statusText.setText("Web page successfully scraped.");
+
+        try {
+            scraper.connectDocument();
+            scraper.grabHeadlines(scraper.getDocument());
+            scraper.printHeadlines(scraper.getNewsHeadlines());
+        } catch (Exception e) {
+            System.out.println("There was an error.");
+        }
     }
 
     //@Override
@@ -33,5 +43,7 @@ public class HelloController {
         introText.setWrapText(true);
         introText.setTextAlignment(TextAlignment.CENTER);
         introText.setMaxWidth(400);
+
+        scraper = new Scraper();
     }
 }

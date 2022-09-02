@@ -28,3 +28,7 @@ Output
 	-saves text output
 ErrorHandler
 	-handles errors and exceptions if they come up
+	
+*****
+next: get Scraper basic output and pass to DataParser, which outputs as Output object and our main option: dump as a text file in the same working folder
+-the goal: using headline title and URL, get that, output as a test CSV.
