@@ -1,19 +1,21 @@
 package com.example.getscraped;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
 
-public class DataParser {
+public class Parser {
     //private HTMLData data;
     private Elements toParse;
-    public DataParser(Elements elements) {
-        toParse = elements;
+    public Parser() {
+
     }
+
+    public void addData(Elements elements) {toParse = elements;}
 
     public void parseData() {}
 
@@ -22,21 +24,23 @@ public class DataParser {
     public void returnCleanData() {}
 
     public File createTextFile() {
-        File dumpText = new File("output.txt");
-        return dumpText;
+        return new File("output.txt");
     }
 
-    public void dumpHeadlinesAsText() {
+    public void dumpHeadlines() throws IOException {
         //log headline and link to that article
+        File newTextFile = createTextFile();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(newTextFile));
+
         for (Element headline : toParse) {
-            //arm empty text file with createTextfile()
-            //save headline.attr as String.format
-            //save headline.absURL as string format
-            //write this line to our text file
-            //when done: we want to save this file as text in the directory
-            //log("%s\n\t%s", headline.attr("title"), headline.absUrl("href"));
+            String title = "Title: " + headline.attr("title");
+            String url = "URL: " + headline.absUrl("href");
+
+            writer.write(title + "\n" + url + "\n\n");
         }
+        writer.close();
     }
+
 
     //goal 1: get the Wikipedia example and dump it as a .txt file.
     //goal 2: parse and organize a simple web page for dumping. (probably just a Wikipedia article itself.)

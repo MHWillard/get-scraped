@@ -18,12 +18,12 @@ public class Scraper {
         return doc;
     }
 
-    public Elements getNewsHeadlines() {
+    public Elements getHeadlines() {
         return newsHeadlines;
     }
 
-    public void connectDocument() throws IOException {
-        doc = Jsoup.connect("https://en.wikipedia.org").get();
+    public void connectDocument(String url) throws IOException {
+        doc = Jsoup.connect(url).get();
         log(doc.title());
     }
 
@@ -46,6 +46,6 @@ public class Scraper {
 
     //access web page from URL
     //scrape the data
-    //package data as needed into HTML object for DataParser to work with
+    //package data as needed into HTML object for Parser to work with
     //organize and then dump as .txt. file
 }

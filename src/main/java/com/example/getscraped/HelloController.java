@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.TextAlignment;
-import javafx.fxml.Initializable;
 
 public class HelloController {
 
@@ -18,6 +17,7 @@ public class HelloController {
     private TextField url;
 
     private Scraper scraper;
+    private Parser parser;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -27,11 +27,15 @@ public class HelloController {
     @FXML
     protected void onScrapeButtonClick() {
         statusText.setText("Web page successfully scraped.");
+        String link = "https://en.wikipedia.org/wiki/Empyrean_Challenge";
 
         try {
-            scraper.connectDocument();
+            scraper.connectDocument(link);
             scraper.grabHeadlines(scraper.getDocument());
-            scraper.printHeadlines(scraper.getNewsHeadlines());
+            scraper.printHeadlines(scraper.getHeadlines());
+
+            parser.addData(scraper.getHeadlines());
+            parser.dumpHeadlines();
         } catch (Exception e) {
             System.out.println("There was an error.");
         }
@@ -45,5 +49,6 @@ public class HelloController {
         introText.setMaxWidth(400);
 
         scraper = new Scraper();
+        parser = new Parser();
     }
 }
