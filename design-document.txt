@@ -32,3 +32,23 @@ ErrorHandler
 *****
 next: get Scraper basic output and pass to DataParser, which outputs as Output object and our main option: dump as a text file in the same working folder
 -the goal: using headline title and URL, get that, output as a test CSV.
+
+https://en.wikipedia.org/wiki/Empyrean_Challenge
+
+TAGS NEEDED
+title
+href
+
+id firstHeading
+
+IN THE INFOBOX TABLE: <table>
+<caption> infobox-title
+each <tr>: <th> infobox-label, <td> infobox-data
+SKIP: infobox-image
+
+mw-headline
+reference
+all <p> content
+all <ul> content
+
+references, mw-cite-backlink, reference-text

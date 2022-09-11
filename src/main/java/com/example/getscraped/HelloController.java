@@ -32,9 +32,9 @@ public class HelloController {
         try {
             scraper.connectDocument(link);
             scraper.grabHeadlines(scraper.getDocument());
-            scraper.printHeadlines(scraper.getHeadlines());
+            scraper.printHeadlines(scraper.getNewsHeadlines());
 
-            parser.addData(scraper.getHeadlines());
+            parser.addData(scraper.getNewsHeadlines());
             parser.dumpHeadlines();
         } catch (Exception e) {
             System.out.println("There was an error.");
