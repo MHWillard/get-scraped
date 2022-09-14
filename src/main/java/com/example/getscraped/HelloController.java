@@ -26,18 +26,19 @@ public class HelloController {
 
     @FXML
     protected void onScrapeButtonClick() {
-        statusText.setText("Web page successfully scraped.");
         String link = "https://en.wikipedia.org/wiki/Empyrean_Challenge";
 
         try {
             scraper.connectDocument(link);
-            scraper.grabHeadlines(scraper.getDocument());
-            scraper.printHeadlines(scraper.getNewsHeadlines());
+            scraper.prepDataExtract();
 
-            parser.addData(scraper.getNewsHeadlines());
-            parser.dumpHeadlines();
+            parser.addDataExtract(scraper.getDataExtract());
+            parser.createOutput();
+
+            statusText.setText("Web page scraped.");
         } catch (Exception e) {
             System.out.println("There was an error.");
+            statusText.setText("There was an error scraping.");
         }
     }
 

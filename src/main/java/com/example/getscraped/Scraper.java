@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class Scraper {
     private Document doc;
-    private Elements newsHeadlines;
 
     private DataExtract data;
 
@@ -20,22 +19,19 @@ public class Scraper {
         return doc;
     }
 
-    public Elements getNewsHeadlines() {
-        return newsHeadlines;
-    }
-
     public void connectDocument(String url) throws IOException {
         doc = Jsoup.connect(url).get();
         log(doc.title());
     }
 
     public void prepDataExtract() {
-        Elements title = doc.getElementsByTag("title");
-        String url = doc.absUrl("href");
-        Element firstHeading = doc.getElementById("firstHeading");
-        Elements headlines = doc.getElementsByClass("mw-headline");
 
-        data = new DataExtract(title, url, firstHeading, headlines);
+        Elements title = doc.select("title");
+        Element url = doc.select("a").first();
+        Elements firstHeading = doc.select("h1.firstHeading"); //firstHeading
+        Elements headlines = doc.select("span.mw-headline"); //mw-headline
+
+        this.data = new DataExtract(title, url, firstHeading, headlines);
     }
     //Get relevant elements from Wikipedia page, starting with a few.
 
@@ -43,17 +39,6 @@ public class Scraper {
         return data;
     }
     //maybe return this object? Pass it in to Parser to work with
-
-    public void grabHeadlines(Document doc) {
-        newsHeadlines = doc.select("#mp-itn b a");
-    }
-
-    public void printHeadlines(Elements newsHeadlines) {
-        //log headline and link to that article
-        for (Element headline : newsHeadlines) {
-            log("%s\n\t%s", headline.attr("title"), headline.absUrl("href"));
-        }
-    }
 
     private static void log(String msg, String... vals) {
         System.out.println(String.format(msg, vals));
