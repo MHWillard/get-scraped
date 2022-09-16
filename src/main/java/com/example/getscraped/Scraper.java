@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Scraper {
     private Document doc;
+    private String url;
 
     private DataExtract data;
 
@@ -27,7 +28,7 @@ public class Scraper {
     public void prepDataExtract() {
 
         Elements title = doc.select("title");
-        Element url = doc.select("a").first();
+        Element url = doc.select("link.canonical"); //use supplied URL from main controller
         Elements firstHeading = doc.select("h1.firstHeading"); //firstHeading
         Elements headlines = doc.select("span.mw-headline"); //mw-headline
 

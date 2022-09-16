@@ -18,6 +18,16 @@ public class Parser {
         this.data = data;
     }
 
+    public String parseURL() {
+        String urlText = data.getURL().text();
+        return urlText;
+    }
+
+    public String parseFirstHeading() {
+        String firstHeadingText = data.getFirstHeading().text();
+        return firstHeadingText;
+    }
+
     public String prepareData() {
         String textBody = "";
 
@@ -26,15 +36,17 @@ public class Parser {
             textBody = textBody.concat(titleText);
         }
 
-        textBody.concat("URL: " + data.getURL() + "\n");
+        String url = parseURL();
+        textBody.concat("URL: " + url + "\n");
 
         //String firstHeadingText = "First Heading: " + data.getFirstHeading().attr("firstHeading"+ "\n");
         //textBody = textBody.concat(firstHeadingText);
+        textBody.concat("URL: " + parseFirstHeading() + "\n");
 
-        //for (Element headline : data.getHeadlines()) {
-            //String headlineText = "Headline: " + headline.attr("mw-headline"+ "\n");
-            //textBody = textBody.concat(headlineText);
-        //}
+        for (Element headline : data.getHeadlines()) {
+            String headlineText = ("Headline: " + headline.text() + "\n");
+            textBody = textBody.concat(headlineText);
+        }
 
         return textBody;
     }
