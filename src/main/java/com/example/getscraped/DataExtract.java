@@ -5,22 +5,22 @@ import org.jsoup.select.Elements;
 
 public class DataExtract {
     private Elements title;
-    private Element url;
-    private Elements firstHeading;
+    private String url;
+    private Element firstHeading;
     private Elements headlines;
 
-    public DataExtract(Elements title, Element url, Elements firstHeading, Elements headlines) {
+    public DataExtract(Elements title, String url, Element firstHeading, Elements headlines) {
         this.title = title;
         this.url = url;
         this.firstHeading = firstHeading;
         this.headlines = headlines;
     }
 
-    public Element getURL() {
+    public String getURL() {
         return url;
     }
 
-    public Elements getFirstHeading() {
+    public Element getFirstHeading() {
         return firstHeading;
     }
 
