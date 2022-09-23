@@ -30,8 +30,12 @@ public class Scraper {
         String url = doc.location(); //use supplied URL from main controller
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
         Elements headlines = doc.select("span.mw-headline"); //mw-headline
+        Element content = doc.getElementById("content");
+        Elements paragraphs = content.getElementsByTag("p");
 
-        this.data = new DataExtract(title, url, firstHeading, headlines);
+        //have to get each heading and the content of the heading under it in order
+
+        this.data = new DataExtract(title, url, firstHeading, headlines, paragraphs);
     }
     //Get relevant elements from Wikipedia page, starting with a few.
 

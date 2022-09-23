@@ -35,6 +35,11 @@ public class Parser {
             textBody = textBody.concat(headlineText);
         }
 
+        for (Element para : data.getParagraphs()) {
+            String paraText = ("P: " + para.text() + "\n");
+            textBody = textBody.concat(paraText);
+        }
+
         return textBody;
     }
     //Iterate through elements and prepare a text block for writing in a good format.

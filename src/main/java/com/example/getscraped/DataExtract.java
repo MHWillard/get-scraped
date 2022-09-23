@@ -8,12 +8,14 @@ public class DataExtract {
     private String url;
     private Element firstHeading;
     private Elements headlines;
+    private Elements paragraphs;
 
-    public DataExtract(Elements title, String url, Element firstHeading, Elements headlines) {
+    public DataExtract(Elements title, String url, Element firstHeading, Elements headlines, Elements paragraphs) {
         this.title = title;
         this.url = url;
         this.firstHeading = firstHeading;
         this.headlines = headlines;
+        this.paragraphs = paragraphs;
     }
 
     public String getURL() {
@@ -30,5 +32,9 @@ public class DataExtract {
 
     public Elements getHeadlines() {
         return headlines;
+    }
+
+    public Elements getParagraphs() {
+        return paragraphs;
     }
 }
