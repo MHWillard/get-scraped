@@ -39,6 +39,13 @@ public class Scraper {
     }
     //Get relevant elements from Wikipedia page, starting with a few.
 
+    public void prepStuff() {
+        Elements stuff = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text > div:first-of-type > ul, div#mw-content-text > div:first-of-type > li");
+        //Pull only good ul/li within content and not past bilbiopgraphy
+
+        this.data = new DataExtract(stuff);
+    }
+
     public DataExtract getDataExtract() {
         return data;
     }

@@ -44,6 +44,17 @@ public class Parser {
     }
     //Iterate through elements and prepare a text block for writing in a good format.
 
+    public String writeBody() {
+        String textBody = "";
+
+        for (Element item : data.getStuff()) {
+            String textAdd = ("" + item.text() + "\n");
+            textBody = textBody.concat(textAdd);
+        }
+
+        return textBody;
+    }
+
     //public void writeFile() {}
     //Set up output.txt and write final text file to directory.
     //use TextBody returned
@@ -56,7 +67,8 @@ public class Parser {
         File file = createTextFile();
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-        String textBody = prepareData();
+        //String textBody = prepareData();
+        String textBody = writeBody();
 
         writer.write(textBody);
 

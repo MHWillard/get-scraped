@@ -10,12 +10,18 @@ public class DataExtract {
     private Elements headlines;
     private Elements paragraphs;
 
+    private Elements stuff;
+
     public DataExtract(Elements title, String url, Element firstHeading, Elements headlines, Elements paragraphs) {
         this.title = title;
         this.url = url;
         this.firstHeading = firstHeading;
         this.headlines = headlines;
         this.paragraphs = paragraphs;
+    }
+
+    public DataExtract(Elements stuff) {
+        this.stuff = stuff;
     }
 
     public String getURL() {
@@ -37,4 +43,6 @@ public class DataExtract {
     public Elements getParagraphs() {
         return paragraphs;
     }
+
+    public Elements getStuff() { return stuff; }
 }
