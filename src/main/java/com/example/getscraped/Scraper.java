@@ -29,22 +29,12 @@ public class Scraper {
         Elements title = doc.select("title");
         String url = doc.location(); //use supplied URL from main controller
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
-        Elements headlines = doc.select("span.mw-headline"); //mw-headline
-        Element content = doc.getElementById("content");
-        Elements paragraphs = content.getElementsByTag("p");
 
-        //have to get each heading and the content of the heading under it in order
+        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, cite, span.reference-text, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p");
 
-        this.data = new DataExtract(title, url, firstHeading, headlines, paragraphs);
+        this.data = new DataExtract(title, url, firstHeading, article);
     }
     //Get relevant elements from Wikipedia page, starting with a few.
-
-    public void prepStuff() {
-        Elements stuff = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text > div:first-of-type > ul, div#mw-content-text > div:first-of-type > li");
-        //Pull only good ul/li within content and not past bilbiopgraphy
-
-        this.data = new DataExtract(stuff);
-    }
 
     public DataExtract getDataExtract() {
         return data;

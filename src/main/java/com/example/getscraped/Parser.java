@@ -26,34 +26,18 @@ public class Parser {
             textBody = textBody.concat(titleText);
         }
 
-        textBody = textBody.concat("URL: " + data.getURL() + "\n");
+        textBody = textBody.concat("URL: " + data.getURL() + "\n\n");
 
-        textBody = textBody.concat("Heading: " + data.getFirstHeading().text() + "\n");
+        //textBody = textBody.concat("Heading: " + data.getFirstHeading().text() + "\n");
 
-        for (Element headline : data.getHeadlines()) {
-            String headlineText = ("Headline: " + headline.text() + "\n");
-            textBody = textBody.concat(headlineText);
-        }
-
-        for (Element para : data.getParagraphs()) {
-            String paraText = ("P: " + para.text() + "\n");
-            textBody = textBody.concat(paraText);
-        }
-
-        return textBody;
-    }
-    //Iterate through elements and prepare a text block for writing in a good format.
-
-    public String writeBody() {
-        String textBody = "";
-
-        for (Element item : data.getStuff()) {
+        for (Element item : data.getArticle()) {
             String textAdd = ("" + item.text() + "\n");
             textBody = textBody.concat(textAdd);
         }
 
         return textBody;
     }
+    //Iterate through elements and prepare a text block for writing in a good format.
 
     //public void writeFile() {}
     //Set up output.txt and write final text file to directory.
@@ -67,8 +51,8 @@ public class Parser {
         File file = createTextFile();
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-        //String textBody = prepareData();
-        String textBody = writeBody();
+        String textBody = prepareData();
+        //String textBody = writeBody();
 
         writer.write(textBody);
 

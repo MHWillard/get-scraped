@@ -30,8 +30,8 @@ public class HelloController {
 
         try {
             scraper.connectDocument(link);
-            //scraper.prepDataExtract();
-            scraper.prepStuff();
+            scraper.prepDataExtract();
+            //scraper.prepStuff();
 
             parser.addDataExtract(scraper.getDataExtract());
             parser.createOutput();
