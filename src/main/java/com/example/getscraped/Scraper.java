@@ -31,6 +31,7 @@ public class Scraper {
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
 
         Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, cite, span.reference-text, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p");
+        //li::marker
 
         this.data = new DataExtract(title, url, firstHeading, article);
     }
