@@ -10,8 +10,8 @@ public class URL {
 
     public URL(String url) {
         this.url = url;
-        this.pattern = Pattern.compile(url);
-        this.matcher = pattern.matcher("^http[s].[a-z][a-z][.].wikipedia.org");
+        this.pattern = Pattern.compile("^(http|https)://(www|[a-zA-Z][a-zA-Z]).wikipedia.org");
+        this.matcher = pattern.matcher(url);
         //https://www.tutorialspoint.com/java/java_regular_expressions.htm
     }
 
@@ -19,8 +19,8 @@ public class URL {
 
     public void setURL(String url) {
         this.url = url;
-        this.pattern = Pattern.compile(url);
-        this.matcher = pattern.matcher("^http[s].[a-z][a-z][.].wikipedia.org");
+        this.pattern = Pattern.compile("^(http|https)://(www|[a-zA-Z][a-zA-Z]).wikipedia.org");
+        this.matcher = pattern.matcher(url);
     }
 
     public String getURL() {
@@ -28,7 +28,7 @@ public class URL {
     }
 
     public boolean validate() {
-        //first part must comtain: https://[x].wikipedia.org at start of string, X can be up to three letters, www, en, etc.
+        //first part must contain: https://[x].wikipedia.org at start of string, X can be up to three letters, www, en, etc.
         //url.matches(^http[s].[a-z][a-z][.].wikipedia.org)
         // url.contains("http")
 
