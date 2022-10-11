@@ -2,8 +2,15 @@ package com.example.getscraped;
 
 //https://www.twilio.com/blog/java-junit-effective-unit-tests
 
+import java.util.ArrayList;
+
 public class URLTests {
     private static URL testURL = new URL();
+
+    private static String[] validURLs = {"http://www.wikipedia.org","https://www.wikipedia.org","https://en.wikipedia.org","https://de.wikipedia.org"};
+    private static String[] invalidURLs = {"htt://www.wikipedia.org","https://ww.wikipedia.org","https://www.wiki.org"};
+
+
     private static final String URL_1 = "http://www.wikipedia.org";
     private static final String URL_2 = "https://www.wikipedia.org";
     private static final String URL_3 = "";
@@ -20,32 +27,21 @@ public class URLTests {
     }
 
     private static void testValidURL() {
-        testURL.setURL(URL_1);
-        if (testURL.validate()) {
-            testLogger("HTTP link", success);
-        } else {testLogger("HTTP link", fail);}
-
-        testURL.setURL(URL_2);
-        if (testURL.validate()) {
-            testLogger("HTTPS link", success);
-        } else {testLogger("HTTPS link", fail);}
+        for (String i : validURLs) {
+            testURL.setURL(i);
+            if (testURL.validate()) {
+                testLogger(i, success);
+            } else {testLogger(i, fail);}
+        }
     }
 
     private static void testInvalidURL() {
-        testURL.setURL("htt://www.wikipedia.org");
-        if (testURL.validate()) {
-            testLogger("HTTP link", success);
-        } else {testLogger("HTTP link", fail);}
-
-        testURL.setURL("http://www.wikipedia.org");
-        if (testURL.validate()) {
-            testLogger("HTTP link", success);
-        } else {testLogger("HTTP link", fail);}
-
-        testURL.setURL("http://en.wikipedia.org");
-        if (testURL.validate()) {
-            testLogger("HTTP link", success);
-        } else {testLogger("HTTP link", fail);}
+        for (String i : invalidURLs) {
+            testURL.setURL(i);
+            if (testURL.validate()) {
+                testLogger(i, success);
+            } else {testLogger(i, fail);}
+        }
     }
 
     private static void testLogger(String testName, String result) {

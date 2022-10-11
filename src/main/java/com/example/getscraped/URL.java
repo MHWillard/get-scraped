@@ -29,8 +29,6 @@ public class URL {
 
     public boolean validate() {
         //first part must contain: https://[x].wikipedia.org at start of string, X can be up to three letters, www, en, etc.
-        //url.matches(^http[s].[a-z][a-z][.].wikipedia.org)
-        // url.contains("http")
 
         return this.matcher.matches();
     }

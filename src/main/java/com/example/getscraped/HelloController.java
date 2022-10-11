@@ -10,14 +10,13 @@ public class HelloController {
     @FXML
     private Label introText;
     @FXML
-    private Label welcomeText;
-    @FXML
     private Label statusText;
     @FXML
-    private TextField url;
+    private TextField urlText;
 
     private Scraper scraper;
     private Parser parser;
+    private URL url;
 
     @FXML
     protected void onScrapeButtonClick() {
@@ -26,12 +25,23 @@ public class HelloController {
 
         //if good: do the whole scrape
 
-        String link = "https://en.wikipedia.org/wiki/Empyrean_Challenge";
+        url.setURL(urlText.getText());
 
+        if (url.validate()) {
+            scrapeArticle(url.getURL());
+        } else {
+            statusText.setText("Invalid URL.");
+        }
+
+        //String link = "https://en.wikipedia.org/wiki/Empyrean_Challenge";
+
+
+    }
+
+    public void scrapeArticle(String link) {
         try {
             scraper.connectDocument(link);
             scraper.prepDataExtract();
-            //scraper.prepStuff();
 
             parser.addDataExtract(scraper.getDataExtract());
             parser.createOutput();
@@ -52,5 +62,6 @@ public class HelloController {
 
         scraper = new Scraper();
         parser = new Parser();
+        url = new URL();
     }
 }

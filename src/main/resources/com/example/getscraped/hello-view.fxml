@@ -13,7 +13,7 @@
     </padding>
 
     <Label fx:id="introText"/>
-    <TextField fx:id="url"/>
+    <TextField fx:id="urlText"/>
     <Button text="Scrape" onAction="#onScrapeButtonClick" />
     <Label fx:id="statusText"/>
 </VBox>
