@@ -43,12 +43,12 @@ public class Parser {
     //Set up output.txt and write final text file to directory.
     //use TextBody returned
 
-    public File createTextFile() {
-        return new File("output.txt");
+    public File createTextFile(String name) {
+        return new File(name + ".txt");
     }
 
     public void createOutput() throws IOException {
-        File file = createTextFile();
+        File file = createTextFile(data.getTitle().text());
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
         String textBody = prepareData();

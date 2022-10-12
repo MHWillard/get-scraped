@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.TextAlignment;
 
-public class HelloController {
+public class Controller {
 
     @FXML
     private Label introText;
