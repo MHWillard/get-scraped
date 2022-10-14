@@ -31,7 +31,29 @@ public class Parser {
         //textBody = textBody.concat("Heading: " + data.getFirstHeading().text() + "\n");
 
         for (Element item : data.getArticle()) {
-            String textAdd = ("" + item.text() + "\n");
+            //if next item = heading element: add \n\n to the paragraph
+            //then if current item is a heading: maybe surround it with equals or whatever
+
+            //perhaps. If li has parent of certain class: reflist-lower-alpha for alphabetical, reflist for numbers, then iterate accordingly?
+            //if item.parent().hasClass? = reflist
+            //item.parent().hasClass("reflist");
+
+            //group
+
+            String escape = "\n";
+            String textAdd = "";
+            int iterator = 0;
+
+            if (item.hasClass("mw-headline")) {
+                textAdd = ("= " + item.text() + " =" + escape);
+            } else if (item.parent().hasClass("reflist")) {
+                textAdd = ((iterator + 1) + ". " + item.text() + escape);
+            }
+
+            else {
+                textAdd = ("" + item.text() + escape + escape);
+            }
+
             textBody = textBody.concat(textAdd);
         }
 

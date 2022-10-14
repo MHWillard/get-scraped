@@ -21,7 +21,6 @@ public class Scraper {
 
     public void connectDocument(String url) throws IOException {
         doc = Jsoup.connect(url).get();
-        log(doc.title());
     }
 
     public void prepDataExtract() {
@@ -30,8 +29,10 @@ public class Scraper {
         String url = doc.location(); //use supplied URL from main controller
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
 
-        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, cite, span.reference-text, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p");
+        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, cite, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p, div.reflist, div.reflist-lower-alpha");
         //li::marker
+
+        //scrape div.reflist lis into their own ArrayLists
 
         this.data = new DataExtract(title, url, firstHeading, article);
     }
