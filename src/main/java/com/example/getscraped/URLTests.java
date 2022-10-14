@@ -15,8 +15,6 @@ public class URLTests {
 
     private static final String URL_1 = "http://www.wikipedia.org";
     private static final String URL_2 = "https://www.wikipedia.org";
-    private static final String URL_3 = "";
-    private static final String URL_4 = "";
 
     private static final String success = " was successful";
     private static final String fail = " has failed";

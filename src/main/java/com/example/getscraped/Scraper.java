@@ -29,10 +29,15 @@ public class Scraper {
         String url = doc.location(); //use supplied URL from main controller
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
 
-        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, cite, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p, div.reflist, div.reflist-lower-alpha");
+        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, cite, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p, div.reflist span.reference-text, div.reflist-lower-alpha span.reference-text");
         //li::marker
 
         //scrape div.reflist lis into their own ArrayLists
+
+        //div.reflist span.reference-text = notes
+        //div.reflist-lower-alpha span.reference-text = references
+        //cite = bibliography
+        //these can go in arraylists or whatever, then get put in at the end of the article
 
         this.data = new DataExtract(title, url, firstHeading, article);
     }
