@@ -29,8 +29,14 @@ public class Scraper {
         String url = doc.location(); //use supplied URL from main controller
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
 
-        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, cite, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p, div.reflist span.reference-text, div.reflist-lower-alpha span.reference-text");
-        //li::marker
+        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p");
+        //run .not() to kill the span.mew-headline that equals certain text
+
+        Elements notes = doc.select("div.reflist-lower-alpha span.reference-text");
+        Elements references = doc.select("div.reflist span.reference-text");
+        Elements biblio = doc.select("cite");
+
+        //these headers have ids: notes, references, Bibliography
 
         //scrape div.reflist lis into their own ArrayLists
 
@@ -39,7 +45,7 @@ public class Scraper {
         //cite = bibliography
         //these can go in arraylists or whatever, then get put in at the end of the article
 
-        this.data = new DataExtract(title, url, firstHeading, article);
+        this.data = new DataExtract(title, url, firstHeading, article, notes, references, biblio);
     }
     //Get relevant elements from Wikipedia page, starting with a few.
 

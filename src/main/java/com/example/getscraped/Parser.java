@@ -20,6 +20,8 @@ public class Parser {
 
     public String prepareData() {
         String textBody = "";
+        char alpha = 'a';
+        int number = 1;
 
         for (Element title : data.getTitle()) {
             String titleText = "Title: " + title.text() + "\n";
@@ -31,30 +33,32 @@ public class Parser {
         //textBody = textBody.concat("Heading: " + data.getFirstHeading().text() + "\n");
 
         for (Element item : data.getArticle()) {
-            //if next item = heading element: add \n\n to the paragraph
-            //then if current item is a heading: maybe surround it with equals or whatever
-
-            //perhaps. If li has parent of certain class: reflist-lower-alpha for alphabetical, reflist for numbers, then iterate accordingly?
-            //if item.parent().hasClass? = reflist
-            //item.parent().hasClass("reflist");
-
-            //group
 
             String escape = "\n";
-            String textAdd = "";
-            int iterator = 0;
+            String textAdd;
 
             if (item.hasClass("mw-headline")) {
                 textAdd = ("= " + item.text() + " =" + escape);
-            } else if (item.parent().hasClass("reflist")) {
-                textAdd = ((iterator + 1) + ". " + item.text() + escape);
             }
-
             else {
                 textAdd = ("" + item.text() + escape + escape);
             }
 
             textBody = textBody.concat(textAdd);
+        }
+
+        for (Element note : data.getNotes()) {
+            textBody = textBody.concat(alpha + ". " + note.text() + "\n");
+            alpha++;
+        }
+
+        for (Element ref : data.getReferences()) {
+            textBody = textBody.concat(number + ". " + ref.text() + "\n");
+            number++;
+        }
+
+        for (Element bib : data.getBiblio()) {
+            textBody = textBody.concat(bib.text() + "\n");
         }
 
         return textBody;
