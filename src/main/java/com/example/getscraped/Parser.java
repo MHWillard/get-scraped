@@ -36,6 +36,8 @@ public class Parser {
 
             String escape = "\n";
             String textAdd;
+            String parent = "";
+            //select item.attr, check for class, then work accordingly if parent?
 
             if (item.hasClass("mw-headline")) {
                 textAdd = ("= " + item.text() + " =" + escape);
@@ -83,6 +85,14 @@ public class Parser {
         writer.write(textBody);
 
         writer.close();
+    }
+
+    public void printItems() {
+        for (Element item : data.getArticle()) {
+
+            System.out.println(item.text());
+            System.out.println("Parent: " + item.parent().text());
+        }
     }
 
     //goal 1: get the Wikipedia example and dump it as a .txt file.
