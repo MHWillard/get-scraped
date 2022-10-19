@@ -50,17 +50,48 @@ public class Parser {
         }
 
         for (Element note : data.getNotes()) {
-            textBody = textBody.concat(alpha + ". " + note.text() + "\n");
-            alpha++;
+            String escape = "\n";
+            String textAdd;
+
+            if (note.hasClass("mw-headline")) {
+                textAdd = ("= " + note.text() + " =" + escape);
+            }
+            else {
+                textAdd = (alpha + ". " + note.text() +  escape);
+                alpha++;
+            }
+
+            textBody = textBody.concat(escape + textAdd);
+            //textBody = textBody.concat(note.text() + "\n");
         }
 
         for (Element ref : data.getReferences()) {
-            textBody = textBody.concat(number + ". " + ref.text() + "\n");
-            number++;
+            String escape = "\n";
+            String textAdd;
+
+            if (ref.hasClass("mw-headline")) {
+                textAdd = ("= " + ref.text() + " =" + escape);
+            }
+            else {
+                textAdd = (number + ". " + ref.text() +  escape);
+                number++;
+            }
+
+            textBody = textBody.concat(escape + textAdd);
         }
 
         for (Element bib : data.getBiblio()) {
-            textBody = textBody.concat(bib.text() + "\n");
+            String escape = "\n";
+            String textAdd;
+
+            if (bib.hasClass("mw-headline")) {
+                textAdd = ("= " + bib.text() + " =" + escape);
+            }
+            else {
+                textAdd = (bib.text() + "\n");
+            }
+
+            textBody = textBody.concat(textAdd);
         }
 
         return textBody;

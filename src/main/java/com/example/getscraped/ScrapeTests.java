@@ -6,8 +6,8 @@ public class ScrapeTests {
     private static String link = "https://en.wikipedia.org/wiki/Empyrean_Challenge";
 
     public static void main(String [] args) {
-        //scrapeArticle(link);
-        printItems();
+        scrapeArticle(link);
+        //printItems();
     }
 
     private static void scrapeArticle(String link) {

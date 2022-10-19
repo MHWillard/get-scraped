@@ -29,12 +29,12 @@ public class Scraper {
         String url = doc.location(); //use supplied URL from main controller
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
 
-        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p");
+        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > ul, blockquote > p").not("span#Notes, span#References, span#Bibliography");
         //run .not() to kill the span.mew-headline that equals certain text
 
-        Elements notes = doc.select("div.reflist-lower-alpha span.reference-text");
-        Elements references = doc.select("div.reflist span.reference-text");
-        Elements biblio = doc.select("cite");
+        Elements notes = doc.select("span#Notes, div.reflist.reflist-lower-alpha span.reference-text");
+        Elements references = doc.select("span#References, div.reflist > div.mw-references-columns > ol > li > span.reference-text");
+        Elements biblio = doc.select("span#Bibliography, cite");
 
         //these headers have ids: notes, references, Bibliography
 
