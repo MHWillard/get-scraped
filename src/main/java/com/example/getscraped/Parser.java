@@ -61,9 +61,11 @@ public class Parser {
                 alpha++;
             }
 
-            textBody = textBody.concat(escape + textAdd);
+            textBody = textBody.concat(textAdd);
             //textBody = textBody.concat(note.text() + "\n");
         }
+
+        textBody = textBody.concat("\n");
 
         for (Element ref : data.getReferences()) {
             String escape = "\n";
@@ -77,8 +79,10 @@ public class Parser {
                 number++;
             }
 
-            textBody = textBody.concat(escape + textAdd);
+            textBody = textBody.concat(textAdd);
         }
+
+        textBody = textBody.concat("\n");
 
         for (Element bib : data.getBiblio()) {
             String escape = "\n";
