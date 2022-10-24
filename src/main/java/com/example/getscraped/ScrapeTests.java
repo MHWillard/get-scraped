@@ -9,8 +9,9 @@ public class ScrapeTests {
 
 
     public static void main(String [] args) {
-        scrapeArticle(link);
+        //scrapeArticle(link);
         //printItems();
+        scrapePages();
     }
 
     private static void scrapeArticle(String link) {
@@ -24,6 +25,23 @@ public class ScrapeTests {
             System.out.println("Article scraped.");
         } catch (Exception e) {
             System.out.println("There was an error.");
+        }
+    }
+
+    private static void scrapePages() {
+
+        for (String i : pages) {
+            try {
+                scraper.connectDocument(i);
+                scraper.prepDataExtract();
+
+                parser.addDataExtract(scraper.getDataExtract());
+                parser.createOutput();
+
+                System.out.println("Article scraped.");
+            } catch (Exception e) {
+                System.out.println("There was an error.");
+            }
         }
     }
 

@@ -95,7 +95,15 @@ public class Parser {
     }
 
     public File createTextFile(String name) {
-        return new File(name + ".txt");
+        File dir = new File("output");
+        String filename = name + ".txt";
+
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        //return new File("/output/" + name + ".txt");
+        return new File("output/" + filename);
     }
 
     public void createOutput() throws IOException {

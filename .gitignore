@@ -42,4 +42,6 @@ build/
 output.txt
 .gitignore
 ~$project-milestones.ods
-Empyrean Challenge - Wikipedia.txt
+output/
+text.html
+readme.md
