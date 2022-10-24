@@ -38,13 +38,6 @@ public class Scraper {
 
         //these headers have ids: notes, references, Bibliography
 
-        //scrape div.reflist lis into their own ArrayLists
-
-        //div.reflist span.reference-text = notes
-        //div.reflist-lower-alpha span.reference-text = references
-        //cite = bibliography
-        //these can go in arraylists or whatever, then get put in at the end of the article
-
         this.data = new DataExtract(title, url, firstHeading, article, notes, references, biblio);
     }
     //Get relevant elements from Wikipedia page, starting with a few.
@@ -52,14 +45,9 @@ public class Scraper {
     public DataExtract getDataExtract() {
         return data;
     }
-    //maybe return this object? Pass it in to Parser to work with
 
     private static void log(String msg, String... vals) {
         System.out.println(String.format(msg, vals));
     }
 
-    //access web page from URL
-    //scrape the data
-    //package data as needed into HTML object for Parser to work with
-    //organize and then dump as .txt. file
 }

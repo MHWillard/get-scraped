@@ -12,7 +12,6 @@ public class URL {
         this.url = url;
         this.pattern = Pattern.compile("^(http|https)://(www|[a-zA-Z][a-zA-Z]).wikipedia.org.*$");
         this.matcher = pattern.matcher(url);
-        //https://www.tutorialspoint.com/java/java_regular_expressions.htm
     }
 
     public URL() {}

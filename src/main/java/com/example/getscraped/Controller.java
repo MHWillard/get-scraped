@@ -20,10 +20,6 @@ public class Controller {
 
     @FXML
     protected void onScrapeButtonClick() {
-        //get text from URL field and throw into URL object
-        //scan object for credible URL field and return result as needed
-
-        //if good: do the whole scrape
 
         url.setURL(urlText.getText());
 
@@ -32,8 +28,6 @@ public class Controller {
         } else {
             statusText.setText("Invalid URL.");
         }
-
-        //String link = "https://en.wikipedia.org/wiki/Empyrean_Challenge";
 
 
     }
@@ -58,7 +52,8 @@ public class Controller {
         introText.setText("Get a text version of any Wikipedia article by putting the URL into the field below and clicking Scrape.");
         introText.setWrapText(true);
         introText.setTextAlignment(TextAlignment.CENTER);
-        introText.setMaxWidth(400);
+        //introText.setMinWidth(500);
+        //introText.setMinHeight(500);
 
         scraper = new Scraper();
         parser = new Parser();
