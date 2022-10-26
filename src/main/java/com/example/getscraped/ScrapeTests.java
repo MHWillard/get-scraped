@@ -5,13 +5,15 @@ public class ScrapeTests {
     private static Parser parser = new Parser();
     private static String link = "https://en.wikipedia.org/wiki/Empyrean_Challenge";
 
+    private static String link2 = "https://en.wikipedia.org/wiki/Aalborg_Municipality";
+
     private static String[] pages = {"https://en.wikipedia.org/wiki/Empyrean_Challenge","https://en.wikipedia.org/wiki/Ben_Alexander_(actor)","https://en.wikipedia.org/wiki/Still_Public_Enemy_Number_1","https://en.wikipedia.org/wiki/Orchard_Court","https://en.wikipedia.org/wiki/John_Bailey_(New_Zealand_cricketer)","https://en.wikipedia.org/wiki/Aalborg_Municipality"};
 
 
     public static void main(String [] args) {
-        //scrapeArticle(link);
+        scrapeArticle(link2);
         //printItems();
-        scrapePages();
+        //scrapePages();
     }
 
     private static void scrapeArticle(String link) {

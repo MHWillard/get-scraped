@@ -22,6 +22,13 @@ public class DataExtract {
         this.biblio = biblio;
     }
 
+    public DataExtract(Elements title, String url, Element firstHeading, Elements article) {
+        this.title = title;
+        this.url = url;
+        this.firstHeading = firstHeading;
+        this.article = article;
+    }
+
     public String getURL() {
         return url;
     }

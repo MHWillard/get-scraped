@@ -43,7 +43,7 @@ public class Parser {
             textBody = textBody.concat(textAdd);
         }
 
-        for (Element note : data.getNotes()) {
+        /*for (Element note : data.getNotes()) {
             String escape = "\n";
             String textAdd;
 
@@ -56,11 +56,11 @@ public class Parser {
             }
 
             textBody = textBody.concat(textAdd);
-        }
+        }*/
 
         textBody = textBody.concat("\n");
 
-        for (Element ref : data.getReferences()) {
+        /*for (Element ref : data.getReferences()) {
             String escape = "\n";
             String textAdd;
 
@@ -73,11 +73,11 @@ public class Parser {
             }
 
             textBody = textBody.concat(textAdd);
-        }
+        }*/
 
         textBody = textBody.concat("\n");
 
-        for (Element bib : data.getBiblio()) {
+        /*for (Element bib : data.getBiblio()) {
             String escape = "\n";
             String textAdd;
 
@@ -89,7 +89,7 @@ public class Parser {
             }
 
             textBody = textBody.concat(textAdd);
-        }
+        }*/
 
         return textBody;
     }
