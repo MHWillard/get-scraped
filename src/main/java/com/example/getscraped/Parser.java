@@ -43,54 +43,6 @@ public class Parser {
             textBody = textBody.concat(textAdd);
         }
 
-        /*for (Element note : data.getNotes()) {
-            String escape = "\n";
-            String textAdd;
-
-            if (note.hasClass("mw-headline")) {
-                textAdd = ("= " + note.text() + " =" + escape);
-            }
-            else {
-                textAdd = (alpha + ". " + note.text() +  escape);
-                alpha++;
-            }
-
-            textBody = textBody.concat(textAdd);
-        }*/
-
-        textBody = textBody.concat("\n");
-
-        /*for (Element ref : data.getReferences()) {
-            String escape = "\n";
-            String textAdd;
-
-            if (ref.hasClass("mw-headline")) {
-                textAdd = ("= " + ref.text() + " =" + escape);
-            }
-            else {
-                textAdd = (number + ". " + ref.text() +  escape);
-                number++;
-            }
-
-            textBody = textBody.concat(textAdd);
-        }*/
-
-        textBody = textBody.concat("\n");
-
-        /*for (Element bib : data.getBiblio()) {
-            String escape = "\n";
-            String textAdd;
-
-            if (bib.hasClass("mw-headline")) {
-                textAdd = ("= " + bib.text() + " =" + escape);
-            }
-            else {
-                textAdd = (bib.text() + "\n");
-            }
-
-            textBody = textBody.concat(textAdd);
-        }*/
-
         return textBody;
     }
 
@@ -110,10 +62,6 @@ public class Parser {
         File file = createTextFile(data.getTitle().text());
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-        //File file = new File("C:\\user\\Desktop\\dir1\\dir2\\filename.txt");
-        //file.getParentFile().mkdirs();
-        //FileWriter writer = new FileWriter(file);
-
         String textBody = prepareData();
 
         writer.write(textBody);
@@ -124,12 +72,70 @@ public class Parser {
     public void printItems() {
         for (Element item : data.getArticle()) {
 
+            //render as report?
             System.out.println(item.text());
             System.out.println("Parent: " + item.parent().text());
+            System.out.println("Children: " + item.children().text());
+            System.out.println("ClassNames: " + item.classNames().toString());
+            System.out.println("Attributes: " + item.attributes().toString());
         }
     }
 
+    /*
+    public String checkItemType(item) {
+        item.
+    }
+
+    public String createHeadline(item) {
+        String headlineText = ("= " + item.text() + " =" + \n);
+        return headlineText;
+    }
+    */
+
     //goal 1: get the Wikipedia example and dump it as a .txt file.
     //goal 2: parse and organize a simple web page for dumping. (probably just a Wikipedia article itself.)
+
+    //methods here: based on item.getArticle() input, return a particular parsing
+    //get item.class and pass it in as input, and based on that, prepare accordingly
+
+    /*for (Element note : data.getNotes()) {
+            String escape = "\n";
+            String textAdd;
+            if (note.hasClass("mw-headline")) {
+                textAdd = ("= " + note.text() + " =" + escape);
+            }
+            else {
+                textAdd = (alpha + ". " + note.text() +  escape);
+                alpha++;
+            }
+            textBody = textBody.concat(textAdd);
+        }*/
+
+        /*for (Element ref : data.getReferences()) {
+            String escape = "\n";
+            String textAdd;
+            if (ref.hasClass("mw-headline")) {
+                textAdd = ("= " + ref.text() + " =" + escape);
+            }
+            else {
+                textAdd = (number + ". " + ref.text() +  escape);
+                number++;
+            }
+            textBody = textBody.concat(textAdd);
+        }*/
+
+
+        /*for (Element bib : data.getBiblio()) {
+            String escape = "\n";
+            String textAdd;
+            if (bib.hasClass("mw-headline")) {
+                textAdd = ("= " + bib.text() + " =" + escape);
+            }
+            else {
+                textAdd = (bib.text() + "\n");
+            }
+            textBody = textBody.concat(textAdd);
+        }*/
+
 
 }

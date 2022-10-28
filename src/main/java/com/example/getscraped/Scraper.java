@@ -29,7 +29,7 @@ public class Scraper {
         String url = doc.location(); //use supplied URL from main controller
         Element firstHeading = doc.select("h1.firstHeading").first(); //firstHeading
 
-        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > li, table.wikitable, div.mw-references-wrap, div.mw-parser-output > div:first-of-type > ul > li").not("div#toc.toc");
+        Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > li, table.wikitable, div.mw-references-wrap, div.mw-parser-output > li, div.div-col > ul > li").not("div#toc.toc");
         //run .not() to kill the span.mew-headline that equals certain text
         //get the main chunks during the select, then parse the chunk when it comes up in Parser into proper format
 
@@ -46,10 +46,6 @@ public class Scraper {
 
     public DataExtract getDataExtract() {
         return data;
-    }
-
-    private static void log(String msg, String... vals) {
-        System.out.println(String.format(msg, vals));
     }
 
 }
