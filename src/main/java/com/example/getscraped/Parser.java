@@ -78,19 +78,44 @@ public class Parser {
             System.out.println("Children: " + item.children().text());
             System.out.println("ClassNames: " + item.classNames().toString());
             System.out.println("Attributes: " + item.attributes().toString());
+            System.out.println("Tag: " + item.tag().toString());
         }
     }
 
-    /*
-    public String checkItemType(item) {
-        item.
+
+    public String parseItem(String text, Tag tag, String className) {
+        String textToAdd = "";
+
+        if (className.contains("mw-headline")){
+            textToAdd = textToAdd.concat("= " + text + " = \n");
+        }
+
+        if (tag.getName("p")) {
+            textToAdd = textToAdd.concat("" + text + "\n\n");
+        }
+
+        if (tag.getName("li")) {
+            textToAdd = textToAdd.concat("* " + text + "\n\n");
+        }
+
+        return textToAdd;
     }
 
-    public String createHeadline(item) {
-        String headlineText = ("= " + item.text() + " =" + \n);
-        return headlineText;
+         /*
+        if name of class includes mw-headline: do things equal signs
+        if tag of item includes li, punctuate with a bullet point
+        if tag of item is p: just add text like normal
+
+        then concat and return
+
+        if (item.hasClass("mw-headline")) {
+                textToAdd = textToAdd.concat("= " + text + " =" + \n);
+        }
+        */
+
+
+
     }
-    */
 
     //goal 1: get the Wikipedia example and dump it as a .txt file.
     //goal 2: parse and organize a simple web page for dumping. (probably just a Wikipedia article itself.)

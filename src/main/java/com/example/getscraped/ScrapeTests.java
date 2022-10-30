@@ -12,7 +12,7 @@ public class ScrapeTests {
 
     public static void main(String [] args) {
         //scrapeArticle(link2);
-        printItems();
+        printItems(link2);
         //scrapePages();
     }
 
@@ -47,7 +47,7 @@ public class ScrapeTests {
         }
     }
 
-    private static void printItems() {
+    private static void printItems(String link) {
         try {
             scraper.connectDocument(link);
             scraper.prepDataExtract();
