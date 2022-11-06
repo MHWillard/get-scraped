@@ -1,6 +1,7 @@
 package com.example.getscraped;
 
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Tag;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -90,15 +91,19 @@ public class Parser {
             textToAdd = textToAdd.concat("= " + text + " = \n");
         }
 
-        if (tag.getName("p")) {
+        if (tag.getName().equals("p")) {
             textToAdd = textToAdd.concat("" + text + "\n\n");
         }
 
-        if (tag.getName("li")) {
+        if (tag.getName().equals("li")) {
             textToAdd = textToAdd.concat("* " + text + "\n\n");
         }
 
         return textToAdd;
+    }
+
+    public void parseTable() {
+
     }
 
          /*
@@ -162,5 +167,3 @@ public class Parser {
             textBody = textBody.concat(textAdd);
         }*/
 
-
-}
