@@ -31,17 +31,16 @@ public class Parser {
 
         for (Element item : data.getArticle()) {
 
-            String escape = "\n";
-            String textAdd;
+            //System.out.println(item.text());
+            //System.out.println("Parent: " + item.parent().text());
+            //System.out.println("Children: " + item.children().text());
+            //System.out.println("ClassNames: " + item.classNames().toString());
+            //System.out.println("Attributes: " + item.attributes().toString());
+            //System.out.println("Tag: " + item.tag().toString());
 
-            if (item.hasClass("mw-headline")) {
-                textAdd = ("= " + item.text() + " =" + escape);
-            }
-            else {
-                textAdd = ("" + item.text() + escape + escape);
-            }
+            String textToAdd = parseItem(item.text(), item.tag(), item.className());
 
-            textBody = textBody.concat(textAdd);
+            textBody = textBody.concat(textToAdd);
         }
 
         return textBody;
@@ -74,12 +73,14 @@ public class Parser {
         for (Element item : data.getArticle()) {
 
             //render as report?
-            System.out.println(item.text());
-            System.out.println("Parent: " + item.parent().text());
-            System.out.println("Children: " + item.children().text());
-            System.out.println("ClassNames: " + item.classNames().toString());
-            System.out.println("Attributes: " + item.attributes().toString());
-            System.out.println("Tag: " + item.tag().toString());
+            //System.out.println(item.text());
+            //System.out.println("Parent: " + item.parent().text());
+            //System.out.println("Children: " + item.children().text());
+            //System.out.println("ClassNames: " + item.classNames().toString());
+            //System.out.println("Attributes: " + item.attributes().toString());
+            //System.out.println("Tag: " + item.tag().toString());
+            System.out.println(item);
+            System.out.println("\n\n");
         }
     }
 
@@ -96,6 +97,7 @@ public class Parser {
         }
 
         if (tag.getName().equals("li")) {
+<<<<<<< HEAD
             textToAdd = textToAdd.concat("* " + text + "\n\n");
         }
 
@@ -110,15 +112,20 @@ public class Parser {
         if name of class includes mw-headline: do things equal signs
         if tag of item includes li, punctuate with a bullet point
         if tag of item is p: just add text like normal
-
-        then concat and return
-
-        if (item.hasClass("mw-headline")) {
-                textToAdd = textToAdd.concat("= " + text + " =" + \n);
+=======
+            textToAdd = textToAdd.concat("* " + text + "\n");
         }
-        */
 
+        //Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > li, table.wikitable, div.mw-references-wrap, div.mw-parser-output > li, div.div-col > ul > li").not("div#toc.toc");
+>>>>>>> 666d314a4bb5fa2fb346d8269400cd968d57f627
 
+        //table: give own algorithm
+
+        return textToAdd;
+    }
+
+    public void parseTable() {};
+        //for table element: find each caption, th, tr, etc. and print
 
     }
 
@@ -167,3 +174,8 @@ public class Parser {
             textBody = textBody.concat(textAdd);
         }*/
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 666d314a4bb5fa2fb346d8269400cd968d57f627
