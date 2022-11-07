@@ -1,6 +1,7 @@
 package com.example.getscraped;
 
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.jsoup.parser.Tag;
 
 import java.io.File;
@@ -100,6 +101,9 @@ public class Parser {
             textToAdd = textToAdd.concat("* " + text + "\n");
         }
 
+        //if item equals wikitable
+        //select tr as elements and pass into thing
+
         //Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > li, table.wikitable, div.mw-references-wrap, div.mw-parser-output > li, div.div-col > ul > li").not("div#toc.toc");
 
         //table: give own algorithm
@@ -107,8 +111,9 @@ public class Parser {
         return textToAdd;
     }
 
-    public void parseTable() {};
+    public void parseTable(Element tableItem) {};
         //for table element: find each caption, th, tr, etc. and print
+        Elements rows = tableItem.select("tr");
 
     }
 
