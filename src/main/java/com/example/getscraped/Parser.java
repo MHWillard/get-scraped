@@ -98,6 +98,22 @@ public class Parser {
         }
 
         if (tag.getName().equals("li")) {
+<<<<<<< HEAD
+            textToAdd = textToAdd.concat("* " + text + "\n\n");
+        }
+
+        return textToAdd;
+    }
+
+    public void parseTable() {
+
+    }
+
+         /*
+        if name of class includes mw-headline: do things equal signs
+        if tag of item includes li, punctuate with a bullet point
+        if tag of item is p: just add text like normal
+=======
             textToAdd = textToAdd.concat("* " + text + "\n");
         }
 
@@ -105,6 +121,7 @@ public class Parser {
         //select tr as elements and pass into thing
 
         //Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > li, table.wikitable, div.mw-references-wrap, div.mw-parser-output > li, div.div-col > ul > li").not("div#toc.toc");
+>>>>>>> 666d314a4bb5fa2fb346d8269400cd968d57f627
 
         //table: give own algorithm
 
@@ -162,5 +179,8 @@ public class Parser {
             textBody = textBody.concat(textAdd);
         }*/
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 666d314a4bb5fa2fb346d8269400cd968d57f627

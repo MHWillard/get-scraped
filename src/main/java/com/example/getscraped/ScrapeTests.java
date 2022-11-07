@@ -11,8 +11,8 @@ public class ScrapeTests {
 
 
     public static void main(String [] args) {
-        //scrapeArticle(link2);
-        printItems(link2);
+        scrapeArticle(link2);
+        //printItems(link2);
         //scrapePages();
     }
 
