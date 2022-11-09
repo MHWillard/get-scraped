@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class Parser {
     private DataExtract data;
+
     public Parser() {
     }
 
@@ -39,7 +40,7 @@ public class Parser {
             //System.out.println("Attributes: " + item.attributes().toString());
             //System.out.println("Tag: " + item.tag().toString());
 
-            String textToAdd = parseItem(item.text(), item.tag(), item.className());
+            String textToAdd = parseItem(item);
 
             textBody = textBody.concat(textToAdd);
         }
@@ -86,34 +87,60 @@ public class Parser {
     }
 
 
-    public String parseItem(String text, Tag tag, String className) {
+    public String parseItem(Element item) {
         String textToAdd = "";
 
-        if (className.contains("mw-headline")){
-            textToAdd = textToAdd.concat("= " + text + " = \n");
+        if (item.className().contains("mw-headline")) {
+            textToAdd = textToAdd.concat("= " + item.text() + " =");
         }
 
-        if (tag.getName().equals("p")) {
-            textToAdd = textToAdd.concat("" + text + "\n\n");
+        if (item.tag().getName().equals("p")) {
+            textToAdd = textToAdd.concat("" + item.text() + "\n");
         }
 
-        if (tag.getName().equals("li")) {
-<<<<<<< HEAD
-            textToAdd = textToAdd.concat("* " + text + "\n\n");
+        if (item.tag().getName().equals("li")) {
+            textToAdd = textToAdd.concat("* " + item.text());
         }
+
+        if (item.className().contains("wikitable")) {
+            textToAdd = textToAdd.concat(parseTable(item));
+        }
+
+        textToAdd = textToAdd.concat("\n");
 
         return textToAdd;
     }
 
-    public void parseTable() {
+    public String parseTable(Element tableItem) {
+        //for table element: find each caption, th, tr, etc. and print
+        String tableText = "";
+        Elements headers = tableItem.select("th");
+        Elements rows = tableItem.select("tr");
 
+        for (Element header : headers) {
+            tableText = tableText.concat(header.text() + " | ");
+        }
+
+        tableText = tableText.concat("\n");
+
+        for (Element row : rows) {
+            Elements cells = row.select("td");
+            for (Element cell : cells) {
+                tableText = tableText.concat(cell.text() + " | ");
+            }
+            tableText = tableText.concat("\n");
+        }
+
+        tableText = tableText.concat("\n");
+        return tableText;
     }
+}
 
          /*
         if name of class includes mw-headline: do things equal signs
         if tag of item includes li, punctuate with a bullet point
         if tag of item is p: just add text like normal
-=======
+
             textToAdd = textToAdd.concat("* " + text + "\n");
         }
 
@@ -121,18 +148,13 @@ public class Parser {
         //select tr as elements and pass into thing
 
         //Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > li, table.wikitable, div.mw-references-wrap, div.mw-parser-output > li, div.div-col > ul > li").not("div#toc.toc");
->>>>>>> 666d314a4bb5fa2fb346d8269400cd968d57f627
 
         //table: give own algorithm
 
         return textToAdd;
     }
 
-    public void parseTable(Element tableItem) {};
-        //for table element: find each caption, th, tr, etc. and print
-        Elements rows = tableItem.select("tr");
 
-    }
 
     //goal 1: get the Wikipedia example and dump it as a .txt file.
     //goal 2: parse and organize a simple web page for dumping. (probably just a Wikipedia article itself.)
@@ -178,9 +200,3 @@ public class Parser {
             }
             textBody = textBody.concat(textAdd);
         }*/
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 666d314a4bb5fa2fb346d8269400cd968d57f627
