@@ -52,8 +52,6 @@ public class Controller {
         introText.setText("Get a text version of any Wikipedia article by putting the URL into the field below and clicking Scrape.");
         introText.setWrapText(true);
         introText.setTextAlignment(TextAlignment.CENTER);
-        //introText.setMinWidth(500);
-        //introText.setMinHeight(500);
 
         scraper = new Scraper();
         parser = new Parser();

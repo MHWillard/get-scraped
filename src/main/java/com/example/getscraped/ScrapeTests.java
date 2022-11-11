@@ -7,11 +7,13 @@ public class ScrapeTests {
 
     private static String link2 = "https://en.wikipedia.org/wiki/Aalborg_Municipality";
 
+    private static String link3 = "https://en.wikipedia.org/wiki/W59";
+
     private static String[] pages = {"https://en.wikipedia.org/wiki/Empyrean_Challenge","https://en.wikipedia.org/wiki/Ben_Alexander_(actor)","https://en.wikipedia.org/wiki/Still_Public_Enemy_Number_1","https://en.wikipedia.org/wiki/Orchard_Court","https://en.wikipedia.org/wiki/John_Bailey_(New_Zealand_cricketer)","https://en.wikipedia.org/wiki/Aalborg_Municipality"};
 
 
     public static void main(String [] args) {
-        scrapeArticle(link2);
+        scrapeArticle(link3);
         //printItems(link2);
         //scrapePages();
     }

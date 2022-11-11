@@ -2,7 +2,6 @@ package com.example.getscraped;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.jsoup.parser.Tag;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -33,14 +32,8 @@ public class Parser {
 
         for (Element item : data.getArticle()) {
 
-            //System.out.println(item.text());
-            //System.out.println("Parent: " + item.parent().text());
-            //System.out.println("Children: " + item.children().text());
-            //System.out.println("ClassNames: " + item.classNames().toString());
-            //System.out.println("Attributes: " + item.attributes().toString());
-            //System.out.println("Tag: " + item.tag().toString());
-
             String textToAdd = parseItem(item);
+            textToAdd = textToAdd.concat("\n");
 
             textBody = textBody.concat(textToAdd);
         }
@@ -56,7 +49,6 @@ public class Parser {
             dir.mkdirs();
         }
 
-        //return new File("/output/" + name + ".txt");
         return new File("output/" + filename);
     }
 
@@ -74,13 +66,6 @@ public class Parser {
     public void printItems() {
         for (Element item : data.getArticle()) {
 
-            //render as report?
-            //System.out.println(item.text());
-            //System.out.println("Parent: " + item.parent().text());
-            //System.out.println("Children: " + item.children().text());
-            //System.out.println("ClassNames: " + item.classNames().toString());
-            //System.out.println("Attributes: " + item.attributes().toString());
-            //System.out.println("Tag: " + item.tag().toString());
             System.out.println(item);
             System.out.println("\n\n");
         }
@@ -98,15 +83,17 @@ public class Parser {
             textToAdd = textToAdd.concat("" + item.text() + "\n");
         }
 
+        //if (item.tag().getName().equals("ul") || item.tag().getName().equals("ol")) {
+            //textToAdd = textToAdd.concat(parseList(item));
+        //}
+
         if (item.tag().getName().equals("li")) {
-            textToAdd = textToAdd.concat("* " + item.text());
+            textToAdd = textToAdd.concat("* " + item.text() + "\n");
         }
 
         if (item.className().contains("wikitable")) {
             textToAdd = textToAdd.concat(parseTable(item));
         }
-
-        textToAdd = textToAdd.concat("\n");
 
         return textToAdd;
     }
@@ -134,69 +121,15 @@ public class Parser {
         tableText = tableText.concat("\n");
         return tableText;
     }
-}
 
-         /*
-        if name of class includes mw-headline: do things equal signs
-        if tag of item includes li, punctuate with a bullet point
-        if tag of item is p: just add text like normal
+    public String parseList(Element listItem) {
+        String tableText = "";
+        Elements li = listItem.select("li");
 
-            textToAdd = textToAdd.concat("* " + text + "\n");
+        for (Element l : li) {
+            tableText = tableText.concat("* " + l.text() + "\n");
         }
 
-        //if item equals wikitable
-        //select tr as elements and pass into thing
-
-        //Elements article = doc.select("div#mw-content-text > div:first-of-type > p, span.mw-headline, div#mw-content-text.mw-body-content.mw-content-ltr > div:first-of-type > li, table.wikitable, div.mw-references-wrap, div.mw-parser-output > li, div.div-col > ul > li").not("div#toc.toc");
-
-        //table: give own algorithm
-
-        return textToAdd;
+        return tableText;
     }
-
-
-
-    //goal 1: get the Wikipedia example and dump it as a .txt file.
-    //goal 2: parse and organize a simple web page for dumping. (probably just a Wikipedia article itself.)
-
-    //methods here: based on item.getArticle() input, return a particular parsing
-    //get item.class and pass it in as input, and based on that, prepare accordingly
-
-    /*for (Element note : data.getNotes()) {
-            String escape = "\n";
-            String textAdd;
-            if (note.hasClass("mw-headline")) {
-                textAdd = ("= " + note.text() + " =" + escape);
-            }
-            else {
-                textAdd = (alpha + ". " + note.text() +  escape);
-                alpha++;
-            }
-            textBody = textBody.concat(textAdd);
-        }*/
-
-        /*for (Element ref : data.getReferences()) {
-            String escape = "\n";
-            String textAdd;
-            if (ref.hasClass("mw-headline")) {
-                textAdd = ("= " + ref.text() + " =" + escape);
-            }
-            else {
-                textAdd = (number + ". " + ref.text() +  escape);
-                number++;
-            }
-            textBody = textBody.concat(textAdd);
-        }*/
-
-
-        /*for (Element bib : data.getBiblio()) {
-            String escape = "\n";
-            String textAdd;
-            if (bib.hasClass("mw-headline")) {
-                textAdd = ("= " + bib.text() + " =" + escape);
-            }
-            else {
-                textAdd = (bib.text() + "\n");
-            }
-            textBody = textBody.concat(textAdd);
-        }*/
+}
