@@ -43,5 +43,6 @@ output.txt
 .gitignore
 ~$project-milestones.ods
 output/
+out/
 text.html
 readme.md

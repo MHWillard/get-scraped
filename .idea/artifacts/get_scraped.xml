@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="get-scraped">
+    <output-path>$PROJECT_DIR$/out/artifacts/get_scraped</output-path>
+    <root id="archive" name="get-scraped.jar">
+      <element id="archive" name="get_scraped.jar">
+        <element id="module-output" name="get-scraped" />
+      </element>
+    </root>
+  </artifact>
+</component>
